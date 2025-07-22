@@ -1,0 +1,20 @@
+<p>products-filter LinkedSignal Exo!</p>
+
+<input class="form-control"  #form type="text" [value]="search | async" (input)="updateSearch(form.value)" placeholder="Search products">
+<select class="form-control" #filter [value]="category | async" (change)="updateCategory(filter.value)">
+  <option value="">All</option>
+  @for (c of categories; track c) {
+  <option [value]="c">{{ c }}</option>
+  }
+</select>
+<section>
+  <button class="btn btn-danger" (click)="reset()">Reset</button>
+</section>
+<ul class="list-group">
+  @for (product of filteredProducts | async; track product.name) {
+  <li class="list-group-item">
+    {{ product.name }} <small>({{ product.category }})</small>
+  </li>
+  }
+</ul>
+

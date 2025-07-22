@@ -1,0 +1,10 @@
+<label for="search">Player Name</label>
+<input type="text" class="form-control" #searchField [(ngModel)]="searchValue">
+
+<ul class="list-group">
+  @for ( player of filtredList() ; track player ) {
+    <li class="list-group list-group-item">
+      {{ player }}
+    </li>
+  }
+</ul>

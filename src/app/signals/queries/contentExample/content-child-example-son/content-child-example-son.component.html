@@ -1,0 +1,19 @@
+<p>content-child-example-son works!</p>
+
+<div class="card-header">
+   <ng-content select="[slot=header]">
+       Je suis une carte vide :(
+    </ng-content>
+</div>
+<div class="card-content">
+   <ng-content select="[slot=content]">
+       Je suis une carte vide :(
+   </ng-content>
+</div>
+
+<div>
+  <hr>
+  Default
+  <hr>
+  <ng-content/>
+</div>

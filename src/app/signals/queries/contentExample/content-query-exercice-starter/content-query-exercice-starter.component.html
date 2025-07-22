@@ -1,0 +1,16 @@
+<app-list-elements>
+  <ng-container slot="search-filter">
+    <label for="search">Player name</label>
+    <input type="text"
+    class="form-control"
+    [(ngModel)]="searchFieldValue"
+    #searchField>
+  </ng-container>
+  <ng-container slot="search-list">
+    @for (player of filtredList() ; track player ) {
+      <li class="list-group list-group-item" #element>
+        {{ player }}
+      </li>
+    }
+  </ng-container>
+</app-list-elements>

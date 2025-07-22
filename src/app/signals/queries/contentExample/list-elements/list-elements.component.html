@@ -1,0 +1,11 @@
+<search>
+  <section>
+    <ng-content select="[slot=search-filter]"></ng-content>
+    <hr>
+    <em> Visible elements: {{ elementsCount }}</em>
+    <hr>
+  </section>
+  <div>
+    <ng-content select="[slot=search-list]"></ng-content>
+  </div>
+</search>
