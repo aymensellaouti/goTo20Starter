@@ -1,9 +1,13 @@
-import { CanDeactivateFn } from '@angular/router';
+import { ActivatedRouteSnapshot, CanDeactivate, GuardResult, MaybeAsync, RouterStateSnapshot } from '@angular/router';
 import { TodoComponent } from '../todo/todo/todo.component';
 
-export const canLeaveGuard: CanDeactivateFn<TodoComponent> = (component, currentRoute, currentState, nextState) => {
-  if(component.todo.name.trim() || component.todo.content.trim()) {
-    return confirm('Are you sure')
+
+
+export class CanLeaveGuard implements CanDeactivate<TodoComponent> {
+  canDeactivate(component: TodoComponent, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState: RouterStateSnapshot): MaybeAsync<GuardResult> {
+    if (component.todo.name.trim() || component.todo.content.trim()) {
+      return confirm('Are you sure');
+    }
+    return true;
   }
-  return true;
-};
+}
