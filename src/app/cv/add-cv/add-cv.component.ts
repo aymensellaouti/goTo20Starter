@@ -11,9 +11,10 @@ import { uniqueCinValidator } from 'src/app/async validators/cin.async-validator
 import { ageCinValidator } from 'src/app/validators/age-cin.validator';
 
 @Component({
-  selector: 'app-add-cv',
-  templateUrl: './add-cv.component.html',
-  styleUrls: ['./add-cv.component.css'],
+    selector: 'app-add-cv',
+    templateUrl: './add-cv.component.html',
+    styleUrls: ['./add-cv.component.css'],
+    standalone: false
 })
 export class AddCvComponent implements OnDestroy {
   formBuilder = inject(FormBuilder);

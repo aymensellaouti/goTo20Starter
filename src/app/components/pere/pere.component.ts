@@ -6,9 +6,10 @@ export interface TestUser {
 }
 
 @Component({
-  selector: 'app-pere',
-  templateUrl: './pere.component.html',
-  styleUrls: ['./pere.component.css'],
+    selector: 'app-pere',
+    templateUrl: './pere.component.html',
+    styleUrls: ['./pere.component.css'],
+    standalone: false
 })
 export class PereComponent {
   user: TestUser = {

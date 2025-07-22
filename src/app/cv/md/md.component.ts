@@ -5,9 +5,10 @@ import { Cv } from '../model/cv';
 import { CvService } from '../services/cv.service';
 
 @Component({
-  selector: 'app-md',
-  templateUrl: './md.component.html',
-  styleUrls: ['./md.component.css']
+    selector: 'app-md',
+    templateUrl: './md.component.html',
+    styleUrls: ['./md.component.css'],
+    standalone: false
 })
 export class MdComponent {
 cvs: Cv[] = [];

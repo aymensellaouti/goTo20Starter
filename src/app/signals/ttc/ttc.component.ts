@@ -5,8 +5,7 @@ import { FormsModule } from '@angular/forms';
     selector: 'app-ttc',
     templateUrl: './ttc.component.html',
     styleUrls: ['./ttc.component.css'],
-    imports: [FormsModule],
-    standalone: true
+    imports: [FormsModule]
 })
 export class TtcComponent {
 
