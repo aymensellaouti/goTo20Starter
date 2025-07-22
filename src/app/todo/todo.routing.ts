@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
 import { Route, RouterModule } from "@angular/router";
-import { canLeaveGuard } from "../guard/can-leave.guard";
+import { CanLeaveGuard } from "../guard/can-leave.guard";
 import { TodoComponent } from "./todo/todo.component";
 
 const routes: Route[] = [
-    { path: '', component: TodoComponent, canDeactivate:[canLeaveGuard] },
+    { path: '', component: TodoComponent, canDeactivate:[CanLeaveGuard] },
 ];
 
 @NgModule({
