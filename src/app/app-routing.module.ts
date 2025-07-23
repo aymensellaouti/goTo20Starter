@@ -10,23 +10,23 @@ import { RhComponent } from "./optimizationPattern/rh/rh.component";
 import { APP_ROUTES } from "src/config/routes.config";
 import { ProductsComponent } from "./products/products.component";
 import { CustomPreloadingStrategy } from "./Preloading strategies/custom.preloading-strategy";
+import { CartComponent } from "./cart/cart/cart.component";
 
 const routes: Route[] = [
   { path: 'login', component: LoginComponent },
   { path: 'rh', component: RhComponent },
+  { path: 'cart', component: CartComponent },
   { path: APP_ROUTES.products, component: ProductsComponent },
   {
     path: APP_ROUTES.todo,
-    loadChildren: () => import('./todo/todo.module').then(
-      m => m.TodoModule
-    )
+    loadChildren: () => import('./todo/todo.module').then((m) => m.TodoModule),
   },
   {
     path: APP_ROUTES.cv,
     loadChildren: () => import('./cv/cv.module'),
     data: {
-      preload: true
-    }
+      preload: true,
+    },
   },
   {
     path: '',

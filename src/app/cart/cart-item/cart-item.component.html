@@ -1,0 +1,27 @@
+<div>
+  <div class="row mb-2">
+    <div class="col-md-2">
+      <b>Produit</b>
+    </div>
+    <div class="col-md-2 text-center">
+      <b>Prix</b>
+    </div>
+    <div class="col-md-2 text-center">
+      <select class="form-select" aria-label="Quantity list" style="margin-bottom: 10px; width:60px; margin: 0 auto">
+        <option disabled value="">--Sélectionner votre quantité--</option>
+        @for (qty of productQty(); track qty) {
+        <option>{{ qty }}</option>
+        }
+      </select>
+    </div>
+    <div class="col-md-2 text-end">
+      <b>Product Total Price</b>
+    </div>
+    <div class="col-md-2 text-center">
+      <button type="button" class="btn btn-warning" aria-label="Close">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
