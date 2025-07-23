@@ -43,6 +43,7 @@ import { UUID_PROVIDER } from './providers/uuid.provider';
 import { UserElementsComponent } from './optimizationPattern/user-elements/user-elements.component';
 import { FiboPipe } from './pipes/fibo.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { SomComponent } from "./signals/som/som.component";
 
 @NgModule({
   declarations: [
@@ -84,12 +85,13 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000',
+        enabled: !isDevMode(),
+        // Register the ServiceWorker as soon as the application is stable
+        // or after 30 seconds (whichever comes first).
+        registrationStrategy: 'registerWhenStable:30000',
     }),
-  ],
+    SomComponent
+],
   providers: [
     AuthInterceptorProvider,
     UUID_PROVIDER,
