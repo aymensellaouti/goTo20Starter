@@ -44,6 +44,8 @@ import { UserElementsComponent } from './optimizationPattern/user-elements/user-
 import { FiboPipe } from './pipes/fibo.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { SomComponent } from "./signals/som/som.component";
+import { ThreeComponent } from "./change Detection/three.component";
+import { StartCdComponent } from './change Detection/start-cd/start-cd.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { SomComponent } from "./signals/som/som.component";
   ],
   bootstrap: [AppComponent],
   imports: [
+    StartCdComponent,
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule, // required animations module
@@ -90,7 +93,8 @@ import { SomComponent } from "./signals/som/som.component";
         // or after 30 seconds (whichever comes first).
         registrationStrategy: 'registerWhenStable:30000',
     }),
-    SomComponent
+    SomComponent,
+    ThreeComponent
 ],
   providers: [
     AuthInterceptorProvider,
