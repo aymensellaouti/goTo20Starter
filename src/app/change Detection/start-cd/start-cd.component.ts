@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { TwoComponent } from "src/app/change Detection/two.component";
 import { ThreeComponent } from "src/app/change Detection/three.component";
+import { BaseNodeComponent } from '../base-node.component';
 
 @Component({
   selector: 'app-start-cd',
@@ -9,4 +10,4 @@ import { ThreeComponent } from "src/app/change Detection/three.component";
   styleUrl: './start-cd.component.css',
   encapsulation: ViewEncapsulation.None,
 })
-export class StartCdComponent {}
+export class StartCdComponent extends BaseNodeComponent{}
