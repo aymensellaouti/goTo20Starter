@@ -7,6 +7,7 @@ import { randomColor } from '../utils';
   template: ``,
 })
 export class BaseNodeComponent {
+  // Exemple from : https://github.com/profanis/codeShotsWithProfanis.git Merci Profanis pour ce travail :D
   get color() {
     return randomColor();
   }

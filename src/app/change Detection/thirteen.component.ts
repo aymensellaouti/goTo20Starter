@@ -17,11 +17,11 @@ import { CounterService } from './services/counter.service';
   imports: [AsyncPipe],
   template: `
     <span class="node-label" [style.background-color]="color"
-      >13 - {{ counterService.counter() }}</span
+      >13 - {{ counterService.counter$ | async}}</span
     >
   `,
   styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
 })
 export class ThirteenComponent extends BaseNodeComponent {
@@ -34,19 +34,12 @@ export class ThirteenComponent extends BaseNodeComponent {
 
   constructor() {
     super();
-
-    // setInterval(() => {
-    //   this.counterBs.next(this.counterBs.value + 1);
-    // }, 1000);
-
-    // TODO: unsubscribe
     fromEvent(this.host.nativeElement, 'click').subscribe(() => {
       this.increaseCounter();
     });
   }
 
   increaseCounter() {
-    // this.counterSignal.update((value) => value + 1);
     this.counterService.increaseCounter();
   }
 }

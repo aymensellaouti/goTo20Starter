@@ -19,7 +19,7 @@ import { CounterService } from './services/counter.service';
       class="node-label"
       [style.background-color]="color"
       (click)="decreaseCounter()"
-      >2 - {{ counterService.counter() }}
+      >2 - {{ counterService.counter$ | async}}
     </span>
 
     <app-four class="node" />
@@ -28,7 +28,7 @@ import { CounterService } from './services/counter.service';
   `,
   styles: `
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None,
 })
 export class TwoComponent extends BaseNodeComponent {
