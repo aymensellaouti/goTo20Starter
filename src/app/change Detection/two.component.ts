@@ -13,13 +13,12 @@ import { CounterService } from './services/counter.service';
 @Component({
   selector: 'app-two',
   standalone: true,
-  imports: [FourComponent, FiveComponent, AsyncPipe],
+  imports: [FourComponent, FiveComponent],
   template: `
     <span
       class="node-label"
       [style.background-color]="color"
-      (click)="decreaseCounter()"
-      >2 - {{ counterService.counter$ | async}}
+      >2
     </span>
 
     <app-four class="node" />
@@ -32,9 +31,5 @@ import { CounterService } from './services/counter.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class TwoComponent extends BaseNodeComponent {
-  counterService = inject(CounterService);
 
-  decreaseCounter() {
-    this.counterService.decreaseCounter();
-  }
 }
