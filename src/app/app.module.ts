@@ -46,6 +46,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SomComponent } from "./signals/som/som.component";
 import { ThreeComponent } from "./change Detection/three.component";
 import { StartCdComponent } from './change Detection/start-cd/start-cd.component';
+import { UserResourceComponent } from "./signals/user-resource/user-resource.component";
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { StartCdComponent } from './change Detection/start-cd/start-cd.component
         registrationStrategy: 'registerWhenStable:30000',
     }),
     SomComponent,
-    ThreeComponent
+    ThreeComponent,
+    UserResourceComponent
 ],
   providers: [
     AuthInterceptorProvider,
