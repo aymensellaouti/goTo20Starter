@@ -1,6 +1,5 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import {
-  BehaviorSubject,
   Observable,
   concatMap,
   map,
@@ -26,7 +25,7 @@ export class ProductsComponent {
   productService = inject(ProductService);
 
   products$: Observable<Product[]> = of([]);
-
+  products = signal([]);
   more() {
 
   }
