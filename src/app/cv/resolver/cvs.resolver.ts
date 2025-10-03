@@ -3,7 +3,9 @@ import { Cv } from '../model/cv';
 import { CvService } from '../services/cv.service';
 import { catchError, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { Injectable } from '@angular/core';
 
+@Injectable({providedIn: 'root'})
 export class CvsResolver implements Resolve<Cv[]> {
   constructor(
     private cvService: CvService,
