@@ -11,8 +11,6 @@ import { APP_ROUTES } from "src/config/routes.config";
 
 import { CustomPreloadingStrategy } from "./Preloading strategies/custom.preloading-strategy";
 
-import { CV_ROUTES } from "./cv/cv-routing.module";
-
 export const routes: Route[] = [
   { path: 'login', loadComponent: () => import('./auth/login/login.component').then(m => m.LoginComponent) },
   { path: 'rh', loadComponent: () => import('./optimizationPattern/rh/rh.component').then(m => m.RhComponent) },
@@ -23,20 +21,13 @@ export const routes: Route[] = [
       preload: true,
     },
     loadChildren: () =>
-      import('./cv/cv-routing.module').then((cvRoutes) => cvRoutes.CV_ROUTES),
+      import('./cv/cv-routes').then((cvRoutes) => cvRoutes.CV_ROUTES),
   },
   { path: APP_ROUTES.products, loadComponent: () => import('./products/products.component').then(m => m.ProductsComponent) },
   {
     path: APP_ROUTES.todo,
     loadComponent: () => import('./todo/todo/todo.component'),
   },
-  // {
-  //   path: APP_ROUTES.cv,
-  //   loadChildren: () => import('./cv/cv.module'),
-  //   data: {
-  //     preload: true,
-  //   },
-  // },
   {
     path: '',
     loadComponent: () => import('./templates/front/front.component').then(m => m.FrontComponent),
@@ -49,11 +40,3 @@ export const routes: Route[] = [
   },
   { path: '**', loadComponent: () => import('./components/nf404/nf404.component').then(m => m.NF404Component) },
 ];
-
-// @NgModule({
-//   imports: [RouterModule.forRoot(routes, {
-//     preloadingStrategy: CustomPreloadingStrategy
-//   })],
-//   exports: [RouterModule],
-// })
-// export class AppRoutingModule {}
