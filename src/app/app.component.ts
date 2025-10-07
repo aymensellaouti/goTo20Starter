@@ -11,12 +11,14 @@ import {
 import { WeekTodoComponent } from './todo/week-todo/week-todo.component';
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 import { CvService } from './cv/services/cv.service';
+import { CounterComponent } from "./signals/counter/counter.component";
+import { SomComponent } from "./signals/som/som.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [NavbarComponent, RouterOutlet, NgxSpinnerComponent],
+  imports: [NavbarComponent, RouterOutlet, NgxSpinnerComponent, CounterComponent, SomComponent],
 })
 export class AppComponent implements OnInit {
   // appRef = inject(ApplicationRef);
