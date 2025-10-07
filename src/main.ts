@@ -8,12 +8,14 @@ import { LoggerService } from './app/services/logger.service';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideToastr, ToastrModule } from 'ngx-toastr';
-import { AppRoutingModule } from './app/app-routing.module';
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { provideToastr } from 'ngx-toastr';
+import { routes } from './app/routes';
+import {  provideHttpClient } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { isDevMode, importProvidersFrom } from '@angular/core';
 import { AppComponent } from './app/app.component';
+import { PreloadAllModules, provideRouter, withDebugTracing, withPreloading } from '@angular/router';
+import { CustomPreloadingStrategy } from './app/Preloading strategies/custom.preloading-strategy';
 
 
 bootstrapApplication(AppComponent, {
@@ -22,7 +24,6 @@ bootstrapApplication(AppComponent, {
           BrowserModule,
           FormsModule, // required animations module
           // ToastrModule.forRoot(), // ToastrModule added
-          AppRoutingModule,
           ReactiveFormsModule,
           ServiceWorkerModule.register('ngsw-worker.js', {
               enabled: !isDevMode(),
@@ -43,6 +44,11 @@ bootstrapApplication(AppComponent, {
             useClass: LoggerService,
             multi: true,
         },
+        provideRouter(
+          routes,
+          //withDebugTracing(),
+          withPreloading(CustomPreloadingStrategy)
+        ),
         provideAnimations(),
         provideToastr(),
         provideHttpClient()

@@ -5,14 +5,16 @@ import { TodoService } from '../service/todo.service';
 import { FormsModule } from '@angular/forms';
 import { CvComponent } from "src/app/cv/cv/cv.component";
 
+// export class Julie {}
+
 @Component({
     selector: 'app-todo',
     templateUrl: './todo.component.html',
     styleUrls: ['./todo.component.css'],
     providers: [TodoService],
-    imports: [FormsModule, CvComponent]
+    imports: [FormsModule]
 })
-export class TodoComponent {
+export default class TodoComponent {
   private todoService = inject(TodoService);
 
   todos: Todo[] = [];

@@ -11,11 +11,12 @@ import { ListComponent } from '../list/list.component';
 import { CvCardComponent } from '../cv-card/cv-card.component';
 import { EmbaucheComponent } from '../embauche/embauche.component';
 import { AsyncPipe, UpperCasePipe, DatePipe } from '@angular/common';
+import { RouterOutlet } from "@angular/router";
 @Component({
     selector: 'app-cv',
     templateUrl: './cv.component.html',
     styleUrls: ['./cv.component.css'],
-    imports: [ListComponent, CvCardComponent, EmbaucheComponent, AsyncPipe, UpperCasePipe, DatePipe]
+    imports: [ListComponent, CvCardComponent, EmbaucheComponent, AsyncPipe, UpperCasePipe, DatePipe, RouterOutlet]
 })
 export class CvComponent {
   private loggers = inject(LoggersInjectionToken);

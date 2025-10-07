@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { TodoComponent } from '../todo/todo.component';
-
+import TodoComponent from '../todo/todo.component';
 @Component({
     selector: 'app-week-todo',
     templateUrl: './week-todo.component.html',

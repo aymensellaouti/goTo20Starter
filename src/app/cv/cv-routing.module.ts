@@ -1,5 +1,3 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { AddCvComponent } from './add-cv/add-cv.component';
 import { CvComponent } from './cv/cv.component';
@@ -28,9 +26,3 @@ export const CV_ROUTES = [
   { path: 'add', component: AddCvComponent, canActivate: [AuthGuard] },
   { path: ':id', component: DetailsCvComponent },
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(CV_ROUTES)],
-  exports: [RouterModule],
-})
-export class CvRoutingModule {}
