@@ -47,8 +47,10 @@ import { SomComponent } from "./signals/som/som.component";
 import { ThreeComponent } from "./change Detection/three.component";
 import { StartCdComponent } from './change Detection/start-cd/start-cd.component';
 import { UserResourceComponent } from "./signals/user-resource/user-resource.component";
+import { OperationComponent } from "./components/operation/operation.component";
 
 @NgModule({
+  // Le contexte de compilation
   declarations: [
     AppComponent,
     FirstComponent,
@@ -78,7 +80,6 @@ import { UserResourceComponent } from "./signals/user-resource/user-resource.com
     UserElementsComponent,
     FiboPipe,
   ],
-  bootstrap: [AppComponent],
   imports: [
     StartCdComponent,
     BrowserModule,
@@ -96,8 +97,12 @@ import { UserResourceComponent } from "./signals/user-resource/user-resource.com
     }),
     SomComponent,
     ThreeComponent,
-    UserResourceComponent
+    UserResourceComponent,
+    OperationComponent
 ],
+//ok
+  bootstrap: [AppComponent],
+  // Ou est ce qu'on provide si on n'a plus de module
   providers: [
     AuthInterceptorProvider,
     UUID_PROVIDER,

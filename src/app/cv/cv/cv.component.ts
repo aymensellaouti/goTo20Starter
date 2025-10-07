@@ -6,6 +6,7 @@ import { CvService } from '../services/cv.service';
 import { EMPTY, Observable, catchError, delay, of, retry } from 'rxjs';
 import { LoggersInjectionToken } from 'src/app/tokens/logger.injection-token';
 import { TodoService } from 'src/app/todo/service/todo.service';
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-cv',
     templateUrl: './cv.component.html',
@@ -34,7 +35,8 @@ export class CvComponent {
     private loggers: LoggerService[],
     private toastr: ToastrService,
     private cvService: CvService,
-    private todoService: TodoService
+    private todoService: TodoService,
+    // private router: Router
   ) {
     // this.cvService.getCvs().subscribe({
     //   next: (cvs) => {
