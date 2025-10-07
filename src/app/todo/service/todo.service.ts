@@ -11,8 +11,7 @@ let n = 1;
 export class TodoService {
   private todos: Todo[] = [];
   uuid = inject(UUIDInjectionToken);
-  constructor(private loggerService: LoggerService) {}
-
+  loggerService = inject(LoggerService);
   /**
    * elle retourne la liste des todos
    *
