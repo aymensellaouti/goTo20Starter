@@ -3,14 +3,17 @@ import { Cv } from '../model/cv';
 import { CvService } from '../services/cv.service';
 import { catchError, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 @Injectable({providedIn: 'root'})
 export class CvsResolver implements Resolve<Cv[]> {
-  constructor(
-    private cvService: CvService,
-    private toastr: ToastrService
-  ) {}
+  private cvService = inject(CvService);
+  private toastr = inject(ToastrService);
+
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<Cv[] | RedirectCommand> {
     return this.cvService.getCvs().pipe(
       catchError((e) => {

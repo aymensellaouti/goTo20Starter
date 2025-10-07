@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, OnInit } from '@angular/core';
+import { ApplicationRef, Component, OnInit, inject } from '@angular/core';
 import { Cv } from '../model/cv';
 import { CvService } from '../services/cv.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,6 +16,13 @@ import { DefaultImagePipe } from '../pipes/default-image.pipe';
     imports: [AsyncPipe, DefaultImagePipe]
 })
 export class DetailsCvComponent implements OnInit {
+  private cvService = inject(CvService);
+  private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
+  private toastr = inject(ToastrService);
+  authService = inject(AuthService);
+  aRef = inject(ApplicationRef);
+
   cv$: Observable<Cv> = this.activatedRoute.params.pipe(
     tap(params => console.log(params)),
     switchMap((params) => this.cvService.getCvById(params['id'])),
@@ -24,14 +31,10 @@ export class DetailsCvComponent implements OnInit {
       return EMPTY;
     })
   );
-  constructor(
-    private cvService: CvService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService,
-    public authService: AuthService,
-    public aRef: ApplicationRef
-  ) {}
+
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+  constructor() {}
 
   ngOnInit() {
     //const id = this.activatedRoute.snapshot.params['id'];

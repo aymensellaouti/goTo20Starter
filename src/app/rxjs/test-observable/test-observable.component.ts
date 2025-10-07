@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from "@angular/core";
+import { Component, OnDestroy, inject } from "@angular/core";
 import { Observable, Subject, Subscription, filter, map, takeUntil } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { AsyncPipe } from "@angular/common";
@@ -10,11 +10,18 @@ import { AsyncPipe } from "@angular/common";
     imports: [AsyncPipe]
 })
 export class TestObservableComponent implements OnDestroy {
+  private toaster = inject(ToastrService);
+
   firstObservable$: Observable<number>;
   counter = 5;
   mySubscription = new Subscription();
   ieziSakerna = new Subject();
-  constructor(private toaster: ToastrService) {
+
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+  constructor() {
+    const toaster = this.toaster;
+
     /**
      * Flux d'un compte à rebours de 5 à 1
      */
