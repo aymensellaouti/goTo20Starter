@@ -1,6 +1,6 @@
 
 
-import { AuthInterceptorProvider } from './app/auth/interceptors/auth.interceptor';
+import { authInterceptor } from './app/auth/interceptors/auth.interceptor';
 import { UUID_PROVIDER } from './app/providers/uuid.provider';
 import { LoggersInjectionToken } from './app/tokens/logger.injection-token';
 import { Logger2Service } from './app/services/logger2.service';
@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
 import { routes } from './app/routes';
-import {  provideHttpClient } from '@angular/common/http';
+import {  provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { isDevMode, importProvidersFrom } from '@angular/core';
 import { AppComponent } from './app/app.component';
@@ -33,7 +33,7 @@ bootstrapApplication(AppComponent, {
       }),
       NgxSpinnerModule
     ),
-    AuthInterceptorProvider,
+    // AuthInterceptorProvider,
     UUID_PROVIDER,
     {
       provide: LoggersInjectionToken,
@@ -47,11 +47,11 @@ bootstrapApplication(AppComponent, {
     },
     provideRouter(
       routes,
-      withDebugTracing(),
+      // withDebugTracing(),
       withPreloading(CustomPreloadingStrategy)
     ),
     provideAnimations(),
     provideToastr(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
   ],
 }).catch((err) => console.error(err));
