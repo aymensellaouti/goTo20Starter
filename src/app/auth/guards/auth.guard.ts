@@ -14,11 +14,6 @@ import { Injectable, inject } from '@angular/core';
 export class AuthGuard implements CanActivate {
   private authService = inject(AuthService);
   private router = inject(Router);
-
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

@@ -32,10 +32,6 @@ export class DetailsCvComponent implements OnInit {
     })
   );
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-  constructor() {}
-
   ngOnInit() {
     //const id = this.activatedRoute.snapshot.params['id'];
     // this.activatedRoute.params.subscribe(

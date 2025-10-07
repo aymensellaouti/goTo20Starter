@@ -1,27 +1,27 @@
-import { ActivatedRouteSnapshot, MaybeAsync, RedirectCommand, Resolve, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  MaybeAsync,
+  RedirectCommand,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { Cv } from '../model/cv';
 import { CvService } from '../services/cv.service';
 import { catchError, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { Injectable, inject } from '@angular/core';
+import { inject } from '@angular/core';
 
-@Injectable({providedIn: 'root'})
-export class CvsResolver implements Resolve<Cv[]> {
-  private cvService = inject(CvService);
-  private toastr = inject(ToastrService);
-
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() {}
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<Cv[] | RedirectCommand> {
-    return this.cvService.getCvs().pipe(
-      catchError((e) => {
-        this.toastr.error(`
+export const cvsResolver = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+): MaybeAsync<Cv[] | RedirectCommand> => {
+  const cvService = inject(CvService);
+  const toastr = inject(ToastrService);
+  return cvService.getCvs().pipe(
+    catchError((e) => {
+      toastr.error(`
               Attention!! Les données sont fictives, problème avec le serveur.
               Veuillez contacter l'admin.`);
-        return of(this.cvService.getFakeCvs());
-      })
-    );
-  }
+      return of([]);
+    })
+  );
 };

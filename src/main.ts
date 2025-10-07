@@ -16,42 +16,42 @@ import { isDevMode, importProvidersFrom } from '@angular/core';
 import { AppComponent } from './app/app.component';
 import { PreloadAllModules, provideRouter, withDebugTracing, withPreloading } from '@angular/router';
 import { CustomPreloadingStrategy } from './app/Preloading strategies/custom.preloading-strategy';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 bootstrapApplication(AppComponent, {
-    providers: [
-        importProvidersFrom(
-          BrowserModule,
-          FormsModule, // required animations module
-          // ToastrModule.forRoot(), // ToastrModule added
-          ReactiveFormsModule,
-          ServiceWorkerModule.register('ngsw-worker.js', {
-              enabled: !isDevMode(),
-              // Register the ServiceWorker as soon as the application is stable
-              // or after 30 seconds (whichever comes first).
-              registrationStrategy: 'registerWhenStable:30000',
-          })
-        ),
-        AuthInterceptorProvider,
-        UUID_PROVIDER,
-        {
-            provide: LoggersInjectionToken,
-            useClass: Logger2Service,
-            multi: true,
-        },
-        {
-            provide: LoggersInjectionToken,
-            useClass: LoggerService,
-            multi: true,
-        },
-        provideRouter(
-          routes,
-          //withDebugTracing(),
-          withPreloading(CustomPreloadingStrategy)
-        ),
-        provideAnimations(),
-        provideToastr(),
-        provideHttpClient()
-    ]
-})
-  .catch(err => console.error(err));
+  providers: [
+    importProvidersFrom(
+      BrowserModule,
+      FormsModule, // required animations module
+      // ToastrModule.forRoot(), // ToastrModule added
+      ReactiveFormsModule,
+      ServiceWorkerModule.register('ngsw-worker.js', {
+        enabled: !isDevMode(),
+        // Register the ServiceWorker as soon as the application is stable
+        // or after 30 seconds (whichever comes first).
+        registrationStrategy: 'registerWhenStable:30000',
+      }),
+      NgxSpinnerModule
+    ),
+    AuthInterceptorProvider,
+    UUID_PROVIDER,
+    {
+      provide: LoggersInjectionToken,
+      useClass: Logger2Service,
+      multi: true,
+    },
+    {
+      provide: LoggersInjectionToken,
+      useClass: LoggerService,
+      multi: true,
+    },
+    provideRouter(
+      routes,
+      withDebugTracing(),
+      withPreloading(CustomPreloadingStrategy)
+    ),
+    provideAnimations(),
+    provideToastr(),
+    provideHttpClient(),
+  ],
+}).catch((err) => console.error(err));

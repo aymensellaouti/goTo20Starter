@@ -1,15 +1,5 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Route } from "@angular/router";
-
-
-
-
-
-
-
+import { Route } from "@angular/router";
 import { APP_ROUTES } from "src/config/routes.config";
-
-import { CustomPreloadingStrategy } from "./Preloading strategies/custom.preloading-strategy";
 
 export const routes: Route[] = [
   { path: 'login', loadComponent: () => import('./auth/login/login.component').then(m => m.LoginComponent) },
