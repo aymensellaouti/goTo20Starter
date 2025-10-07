@@ -14,12 +14,13 @@ import { CvService } from './cv/services/cv.service';
 import { CounterComponent } from "./signals/counter/counter.component";
 import { SomComponent } from "./signals/som/som.component";
 import { TtcComponent } from "./signals/ttc/ttc.component";
+import { ShowIsEvenComponent } from "./signals/show-is-even/show-is-even.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [NavbarComponent, RouterOutlet, NgxSpinnerComponent, CounterComponent, SomComponent, TtcComponent],
+  imports: [NavbarComponent, RouterOutlet, NgxSpinnerComponent, CounterComponent, SomComponent, TtcComponent, ShowIsEvenComponent],
 })
 export class AppComponent implements OnInit {
   // appRef = inject(ApplicationRef);

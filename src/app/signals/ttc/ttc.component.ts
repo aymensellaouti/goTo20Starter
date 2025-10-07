@@ -13,7 +13,13 @@ export class TtcComponent {
   priceHt = signal(0);
   taxe = signal(18);
   qty = signal(1);
-
+  // taxeAlex = computed(() => {
+  //   if (this.qty() < 18 ) {
+  //     return 0;
+  //   } else if(this.qty() > 20) {
+  //     return
+  //   }
+  // })
   // à vérifier
   unitaireTtc = computed(() => (this.priceHt() * (100 + this.taxe())) / 100);
   discount = computed(() => {
