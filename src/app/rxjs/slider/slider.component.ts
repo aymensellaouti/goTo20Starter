@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Component, inject, Input } from "@angular/core";
 import { Observable, combineLatest, map, startWith, take, timer } from "rxjs";
 import { API } from "src/config/api.config";
+import { NgStyle, AsyncPipe } from "@angular/common";
 
 export interface ApiPhoto {
   _id: number;
@@ -14,7 +15,7 @@ export interface ApiPhoto {
     selector: 'app-slider',
     templateUrl: './slider.component.html',
     styleUrls: ['./slider.component.css'],
-    standalone: false
+    imports: [NgStyle, AsyncPipe]
 })
 export class SliderComponent {
   @Input() awaitTime = 1500;

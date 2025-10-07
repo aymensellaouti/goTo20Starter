@@ -4,8 +4,7 @@ import { TestUser } from '../pere/pere.component';
     selector: 'app-fils',
     templateUrl: './fils.component.html',
     styleUrls: ['./fils.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilsComponent {
   /**

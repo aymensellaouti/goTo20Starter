@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FilsComponent } from '../fils/fils.component';
+import { FormsModule } from '@angular/forms';
 
 export interface TestUser {
   id: number;
@@ -9,7 +11,7 @@ export interface TestUser {
     selector: 'app-pere',
     templateUrl: './pere.component.html',
     styleUrls: ['./pere.component.css'],
-    standalone: false
+    imports: [FilsComponent, FormsModule]
 })
 export class PereComponent {
   user: TestUser = {

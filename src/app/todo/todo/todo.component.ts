@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { Todo } from '../model/todo';
 import { TodoService } from '../service/todo.service';
+import { NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-todo',
     templateUrl: './todo.component.html',
     styleUrls: ['./todo.component.css'],
     providers: [TodoService],
-    standalone: false
+    imports: [NgFor, FormsModule]
 })
 export class TodoComponent {
   todos: Todo[] = [];

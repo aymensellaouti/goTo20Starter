@@ -50,72 +50,70 @@ import { UserResourceComponent } from "./signals/user-resource/user-resource.com
 import { OperationComponent } from "./components/operation/operation.component";
 
 @NgModule({
-  // Le contexte de compilation
-  declarations: [
-    AppComponent,
-    FirstComponent,
-    SecondComponent,
-    ColorComponent,
-    TwoComponent,
-    PereComponent,
-    FilsComponent,
-    NgstyleComponent,
-    MiniWordComponent,
-    NgclassComponent,
-    HighlightDirective,
-    RainbowDirective,
-    Btc2usdPipe,
-    NavbarComponent,
-    FrontComponent,
-    AdminComponent,
-    NF404Component,
-    TestFormComponent,
-    LoginComponent,
-    TestObservableComponent,
-    SliderComponent,
-    TestHttpComponent,
-    RhComponent,
-    UserListComponent,
-    ProductsComponent,
-    UserElementsComponent,
-    FiboPipe,
-  ],
-  imports: [
-    StartCdComponent,
-    BrowserModule,
-    FormsModule,
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-        enabled: !isDevMode(),
-        // Register the ServiceWorker as soon as the application is stable
-        // or after 30 seconds (whichever comes first).
-        registrationStrategy: 'registerWhenStable:30000',
-    }),
-    SomComponent,
-    ThreeComponent,
-    UserResourceComponent,
-    OperationComponent
-],
-//ok
-  bootstrap: [AppComponent],
-  // Ou est ce qu'on provide si on n'a plus de module
-  providers: [
-    AuthInterceptorProvider,
-    UUID_PROVIDER,
-    {
-      provide: LoggersInjectionToken,
-      useClass: Logger2Service,
-      multi: true,
-    },
-    {
-      provide: LoggersInjectionToken,
-      useClass: LoggerService,
-      multi: true,
-    },
-  ],
+    // Le contexte de compilation
+    declarations: [AppComponent],
+    imports: [
+        StartCdComponent,
+        BrowserModule,
+        FormsModule,
+        BrowserAnimationsModule, // required animations module
+        ToastrModule.forRoot(), // ToastrModule added
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000',
+        }),
+        SomComponent,
+        ThreeComponent,
+        UserResourceComponent,
+        OperationComponent,
+        FirstComponent,
+        SecondComponent,
+        ColorComponent,
+        TwoComponent,
+        PereComponent,
+        FilsComponent,
+        NgstyleComponent,
+        MiniWordComponent,
+        NgclassComponent,
+        HighlightDirective,
+        RainbowDirective,
+        Btc2usdPipe,
+        NavbarComponent,
+        FrontComponent,
+        AdminComponent,
+        NF404Component,
+        TestFormComponent,
+        LoginComponent,
+        TestObservableComponent,
+        SliderComponent,
+        TestHttpComponent,
+        RhComponent,
+        UserListComponent,
+        ProductsComponent,
+        UserElementsComponent,
+        FiboPipe
+    ],
+    //ok
+    bootstrap: [AppComponent],
+    // Ou est ce qu'on provide si on n'a plus de module
+    providers: [
+        AuthInterceptorProvider,
+        UUID_PROVIDER,
+        {
+            provide: LoggersInjectionToken,
+            useClass: Logger2Service,
+            multi: true,
+        },
+        {
+            provide: LoggersInjectionToken,
+            useClass: LoggerService,
+            multi: true,
+        },
+    ],
 })
 export class AppModule {}
