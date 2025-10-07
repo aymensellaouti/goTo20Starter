@@ -1,14 +1,11 @@
-import { ActivatedRouteSnapshot, CanDeactivate, GuardResult, MaybeAsync, RouterStateSnapshot } from '@angular/router';
-import { TodoComponent } from '../todo/todo/todo.component';
-import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, GuardResult, MaybeAsync, RouterStateSnapshot } from '@angular/router';
 
+import { CanLeave } from './can-leave.interface';
 
-@Injectable({providedIn: 'root'})
-export class CanLeaveGuard implements CanDeactivate<TodoComponent> {
-  canDeactivate(component: TodoComponent, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState: RouterStateSnapshot): MaybeAsync<GuardResult> {
-    if (component.todo.name.trim() || component.todo.content.trim()) {
+ export function canLeaveGuard(component: CanLeave, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState: RouterStateSnapshot): MaybeAsync<GuardResult> {
+    if (!component.canLeave()) {
       return confirm('Are you sure');
     }
     return true;
   }
-}
+

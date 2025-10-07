@@ -68,17 +68,17 @@ export class AddCvComponent implements OnDestroy {
     }
   }
   ngOnDestroy(): void {
-    if (this.form.valid) {
-      localStorage.setItem(
-        CONSTANTES.addSavedForm,
-        JSON.stringify(this.form.value)
-      );
-    } else {
-      localStorage.setItem(
-        CONSTANTES.addSavedForm,
-        JSON.stringify(this.form.value)
-      );
-    }
+    // if (this.form.valid) {
+    //   localStorage.setItem(
+    //     CONSTANTES.addSavedForm,
+    //     JSON.stringify(this.form.value)
+    //   );
+    // } else {
+    //   localStorage.setItem(
+    //     CONSTANTES.addSavedForm,
+    //     JSON.stringify(this.form.value)
+    //   );
+    // }
   }
   addCv() {
     this.cvService.addCv(this.form.value as Cv).subscribe({

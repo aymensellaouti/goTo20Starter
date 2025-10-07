@@ -2,26 +2,22 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   Router,
-  CanActivate,
   GuardResult,
   MaybeAsync,
 } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { APP_ROUTES } from '../../../config/routes.config';
-import { Injectable, inject } from '@angular/core';
+import { inject } from '@angular/core';
 
-@Injectable({providedIn: 'root'})
-export class AuthGuard implements CanActivate {
-  private authService = inject(AuthService);
-  private router = inject(Router);
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): MaybeAsync<GuardResult> {
-    if (!this.authService.isAuthenticated()) {
-      this.router.navigate([APP_ROUTES.login]);
-      return false;
-    }
-    return true;
+export const authGuard = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+): MaybeAsync<GuardResult> => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+  if (!authService.isAuthenticated()) {
+    router.navigate([APP_ROUTES.login]);
+    return false;
   }
-}
+  return true;
+};

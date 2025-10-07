@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, inject } from '@angular/core';
+import { ApplicationRef, Component, inject, Injector, OnInit, runInInjectionContext } from '@angular/core';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {
   NavigationCancel,
@@ -10,6 +10,7 @@ import {
 } from '@angular/router';
 import { WeekTodoComponent } from './todo/week-todo/week-todo.component';
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
+import { CvService } from './cv/services/cv.service';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +18,12 @@ import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./app.component.css'],
   imports: [NavbarComponent, RouterOutlet, NgxSpinnerComponent],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   // appRef = inject(ApplicationRef);
   router = inject(Router);
   spinner = inject(NgxSpinnerService);
+  injector = inject(Injector);
+  cvService!: CvService;
   constructor() {
     // this.router.events.subscribe({
     //   next: (event) => {
@@ -36,4 +39,12 @@ export class AppComponent {
     //   },
     // });
   }
+  ngOnInit(): void {}
+//     runInInjectionContext(this.injector, () => {
+//         this.cvService = inject(CvService)
+//     }
+// )
+//     console.log(this.cvService.getFakeCvs())
+//   }
+
 }

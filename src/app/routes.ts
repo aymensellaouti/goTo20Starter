@@ -1,5 +1,6 @@
 import { Route } from "@angular/router";
 import { APP_ROUTES } from "src/config/routes.config";
+import { canLeaveGuard } from "./guard/can-leave.guard";
 
 export const routes: Route[] = [
   { path: 'login', loadComponent: () => import('./auth/login/login.component').then(m => m.LoginComponent) },
@@ -17,6 +18,7 @@ export const routes: Route[] = [
   {
     path: APP_ROUTES.todo,
     loadComponent: () => import('./todo/todo/todo.component'),
+    canDeactivate: [canLeaveGuard]
   },
   {
     path: '',
