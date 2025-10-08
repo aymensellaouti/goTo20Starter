@@ -1,4 +1,4 @@
-import { Input, OnInit, inject } from '@angular/core';
+import { Input, OnInit, inject, input, linkedSignal } from '@angular/core';
 import {
   Directive,
   ElementRef,
@@ -6,26 +6,30 @@ import {
   HostListener,
 } from '@angular/core';
 
-@Directive({ selector: '[appHighlight]' })
-export class HighlightDirective implements OnInit {
+@Directive({
+  selector: '[appHighlight]',
+  host: {
+    '[style.backgroundColor]': 'this.bgc()',
+    '(mouseenter)': 'this.onMouseEnter()',
+    '(mouseleave)': 'this.onMouseLeave()',
+  },
+})
+export class HighlightDirective {
   private element = inject(ElementRef);
 
-  @Input() in = 'yellow';
-  @Input() out = 'red';
-  @HostBinding('style.backgroundColor') bgc = this.out;
+  in = input('yellow');
+  out = input('red');
+  bgc = linkedSignal(() => this.out());
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-  constructor() {}
-  ngOnInit() {
-    this.bgc = this.out;
-  }
-  @HostListener('mouseenter') onMouseEnter() {
+  // ngOnInit() {
+  //   this.bgc = this.out;
+  // }
+  onMouseEnter() {
     this.element.nativeElement.innerHTML = 'IN';
-    this.bgc = this.in;
+    this.bgc.set(this.in());
   }
-  @HostListener('mouseleave') onMouseLeave() {
+  onMouseLeave() {
     this.element.nativeElement.innerHTML = 'OUT';
-    this.bgc = this.out;
+    this.bgc.set(this.out());
   }
 }

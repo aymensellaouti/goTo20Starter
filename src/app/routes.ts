@@ -3,7 +3,11 @@ import { APP_ROUTES } from "src/config/routes.config";
 import { canLeaveGuard } from "./guard/can-leave.guard";
 
 export const routes: Route[] = [
-  { path: 'login', loadComponent: () => import('./auth/login/login.component').then(m => m.LoginComponent) },
+  {
+    path: 'login',
+    loadComponent: () => import('./auth/login/login.component').then(m => m.LoginComponent),
+
+  },
   { path: 'rh', loadComponent: () => import('./optimizationPattern/rh/rh.component').then(m => m.RhComponent) },
   { path: 'cart', loadComponent: () => import('./cart/cart/cart.component').then(m => m.CartComponent) },
   {
