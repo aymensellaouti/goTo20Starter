@@ -16,11 +16,6 @@ export class ItemComponent {
   @Input() cv: Cv | null = null;
   @Input() size = 50;
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-  constructor() {}
-  // @Output() selectCv = new EventEmitter<Cv>();
-
   onSelectCv() {
     // if (this.cv) this.selectCv.emit(this.cv);
     if (this.cv) {

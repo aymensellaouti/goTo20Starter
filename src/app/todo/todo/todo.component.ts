@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
 import { Todo } from '../model/todo';
 import { TodoService } from '../service/todo.service';
 
@@ -18,18 +18,16 @@ import { CanLeave } from 'src/app/guard/can-leave.interface';
 export default class TodoComponent implements CanLeave {
   private todoService = inject(TodoService);
 
-  todos: Todo[] = [];
+  todos:Signal<Todo[]> = this.todoService.getTodos();
+  nbTodos = computed(() => this.todos().length)
   /**
    * Le todo qui rerésente le formulaire d'ajout d'un todo
    */
-  todo = new Todo();
+  todo = signal(new Todo());
 
-  constructor() {
-    this.todos = this.todoService.getTodos();
-  }
   addTodo() {
-    this.todoService.addTodo(this.todo);
-    this.todo = new Todo();
+    this.todoService.addTodo(this.todo());
+    this.todo.set(new Todo());
   }
 
   deleteTodo(todo: Todo) {
@@ -37,7 +35,7 @@ export default class TodoComponent implements CanLeave {
   }
 
   canLeave() {
-    if (this.todo.name.trim() || this.todo.content.trim()) {
+    if (this.todo().name.trim() || this.todo().content.trim()) {
       return false;
     }
     return true;

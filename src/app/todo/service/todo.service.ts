@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { Todo } from '../model/todo';
 import { LoggerService } from '../../services/logger.service';
 import { UUIDInjectionToken } from 'src/app/tokens/uuid.injection-token';
@@ -9,7 +9,7 @@ let n = 1;
   providedIn: 'root',
 })
 export class TodoService {
-  private todos: Todo[] = [];
+  private todos: WritableSignal<Todo[]> = signal<Todo[]>([]);
   uuid = inject(UUIDInjectionToken);
   loggerService = inject(LoggerService);
   /**
@@ -17,8 +17,8 @@ export class TodoService {
    *
    * @returns Todo[]
    */
-  getTodos(): Todo[] {
-    return this.todos;
+  getTodos(): Signal<Todo[]> {
+    return this.todos.asReadonly();
   }
 
   /**
@@ -30,7 +30,7 @@ export class TodoService {
   addTodo(todo: Todo): void {
     // Todo: Créer un id unique et l'ajouter
     todo.id = this.uuid();
-    this.todos.push(todo);
+    this.todos.update((myTodos) => [...myTodos, todo]);
   }
 
   /**
@@ -40,9 +40,9 @@ export class TodoService {
    * @returns boolean
    */
   deleteTodo(todo: Todo): boolean {
-    const index = this.todos.indexOf(todo);
+    const index = this.todos().indexOf(todo);
     if (index > -1) {
-      this.todos.splice(index, 1);
+       this.todos.update((myTodos) => myTodos.filter((actualTodo) => todo.id != actualTodo.id ));
       return true;
     }
     return false;
@@ -52,6 +52,6 @@ export class TodoService {
    * Logger la liste des todos
    */
   logTodos() {
-    this.loggerService.logger(this.todos);
+    this.loggerService.logger(this.todos());
   }
 }

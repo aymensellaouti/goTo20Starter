@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, OnInit, inject } from '@angular/core';
+import { ApplicationRef, Component, OnInit, inject, input } from '@angular/core';
 import { Cv } from '../model/cv';
 import { CvService } from '../services/cv.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,7 +22,7 @@ export class DetailsCvComponent implements OnInit {
   private toastr = inject(ToastrService);
   authService = inject(AuthService);
   aRef = inject(ApplicationRef);
-
+  // id = input<number>(0);
   cv$: Observable<Cv> = this.activatedRoute.params.pipe(
     tap(params => console.log(params)),
     switchMap((params) => this.cvService.getCvById(params['id'])),
@@ -33,6 +33,8 @@ export class DetailsCvComponent implements OnInit {
   );
 
   ngOnInit() {
+    // console.log(this.id());
+
     //const id = this.activatedRoute.snapshot.params['id'];
     // this.activatedRoute.params.subscribe(
     //   (params) => {

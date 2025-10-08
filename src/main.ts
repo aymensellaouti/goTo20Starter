@@ -10,11 +10,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
 import { routes } from './app/routes';
-import {  provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
+import {  provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { isDevMode, importProvidersFrom } from '@angular/core';
 import { AppComponent } from './app/app.component';
-import { PreloadAllModules, provideRouter, withDebugTracing, withPreloading } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withPreloading } from '@angular/router';
 import { CustomPreloadingStrategy } from './app/Preloading strategies/custom.preloading-strategy';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
@@ -48,7 +48,8 @@ bootstrapApplication(AppComponent, {
     provideRouter(
       routes,
       // withDebugTracing(),
-      withPreloading(CustomPreloadingStrategy)
+      withPreloading(CustomPreloadingStrategy),
+      // withComponentInputBinding()
     ),
     provideAnimations(),
     provideToastr(),

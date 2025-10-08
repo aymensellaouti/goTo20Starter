@@ -1,20 +1,22 @@
-import { Component, computed, input, Input, OnChanges, output, SimpleChanges } from '@angular/core';
+import { Component, computed, input, Input, model, OnChanges, output, SimpleChanges } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-is-even',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './is-even.component.html',
   styleUrl: './is-even.component.css',
 })
-export class IsEvenComponent  {
+export class IsEvenComponent {
   // @Input()
-  x = input.required<number>({
+  x = input.required({
     alias: 'valeur',
-    // transform: (value: number): number => {
-    //   return 5
-    // }
+    transform: (value: number): number => {
+      return 5;
+    },
   });
-  isEven = computed(() => this.x() % 2 ? 'is odd' : 'is even')
+  isEven = computed(() => (this.x() % 2 ? 'is odd' : 'is even'));
+  test = model();
   // get isEven() {
   //   return this.x % 2 ? 'is odd' : 'is even';
   // }

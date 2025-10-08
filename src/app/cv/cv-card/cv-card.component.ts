@@ -16,10 +16,6 @@ export class CvCardComponent {
   private embaucheService = inject(EmbaucheService);
   private toastr = inject(ToastrService);
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() {}
   @Input() cv: Cv | null = null;
 
   ngOnInit() {}
