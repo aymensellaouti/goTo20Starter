@@ -1,8 +1,10 @@
-import { Component, computed, linkedSignal, signal } from '@angular/core';
+import { Component, computed, inject, Injector, linkedSignal, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { countries } from '../data/countries';
 import { JsonPipe } from '@angular/common';
 import { Country } from '../model/country.interface';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-country-currency-selector',
@@ -13,6 +15,8 @@ import { Country } from '../model/country.interface';
 export class CountryCurrencySelectorComponent {
   countries = signal(countries);
   selectedCountry = signal(countries[0]);
+  countries$!: Observable<Country[]>;
+  injector = inject(Injector);
   /**
    * On va dépendre de selectedCountry => a chaque modification du pays sélectionné voila ce que je fais :
    *
@@ -21,7 +25,7 @@ export class CountryCurrencySelectorComponent {
    * Sinon on mette celle par défaut du nouveau pays séléctionné
    */
   selectedCurrency = linkedSignal<Country, string>({
-    // LEs signaux dont je dépend
+    // Les signaux dont je dépend
     source: this.selectedCountry,
     // Comment je calcule la nouvelle valeur
     computation: (newCountry, previousValues) => {
@@ -32,4 +36,9 @@ export class CountryCurrencySelectorComponent {
     }
   })
 
+  test() {
+    this.countries$ = toObservable(this.countries, {
+      injector: this.injector
+    });
+  }
 }

@@ -9,11 +9,6 @@ import { ProductApiResponse } from "../dto/product-api-response.dto";
 })
 export class ProductService {
   private http = inject(HttpClient);
-
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() {}
   getProducts(setting: Settings) {
     const { limit, skip } = setting;
     return this.http.get<ProductApiResponse>(
