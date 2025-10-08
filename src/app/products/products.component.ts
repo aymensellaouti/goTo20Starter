@@ -12,7 +12,7 @@ import { Product } from "./dto/product.dto";
 import { ProductService } from "./services/product.service";
 import { Settings } from "./dto/product-settings.dto";
 import { AsyncPipe } from "@angular/common";
-import { toObservable, toSignal } from "@angular/core/rxjs-interop";
+import { rxResource, toObservable, toSignal } from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-products',
@@ -42,7 +42,10 @@ export class ProductsComponent {
     scan((oldProducts, newProducts) => [...oldProducts,...newProducts])
   );
   // State
-  productsSignal = toSignal(this.products$, {initialValue: []});
+  // productsSignal = toSignal(this.products$, {initialValue: []});
+  rxProductsRessource = rxResource<Product[], null>({
+    stream: () => this.products$
+  });
   more() {
     this.setting.update((oldSetting) => ({
       skip: oldSetting.skip + oldSetting.limit,

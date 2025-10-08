@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, inject, Injector, OnInit, runInInjectionContext } from '@angular/core';
+import { ApplicationRef, ChangeDetectorRef, Component, inject, Injector, OnInit, runInInjectionContext, signal } from '@angular/core';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {
   NavigationCancel,
@@ -17,14 +17,17 @@ import { TtcComponent } from "./signals/ttc/ttc.component";
 import { ShowIsEvenComponent } from "./signals/show-is-even/show-is-even.component";
 import { CountryCurrencySelectorComponent } from "./signals/linkedSignal/currency-selector/country-currency-selector.component";
 import { HighlightDirective } from './directives/highlight.directive';
+import { StartCdComponent } from "./change Detection/start-cd/start-cd.component";
+import { DeferComponent } from "./signals/defer/defer/defer.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   imports: [
-    HighlightDirective,
-    NavbarComponent, RouterOutlet, NgxSpinnerComponent, CounterComponent, SomComponent, TtcComponent, ShowIsEvenComponent, CountryCurrencySelectorComponent],
+    NavbarComponent, RouterOutlet, NgxSpinnerComponent,
+    DeferComponent
+],
 })
 export class AppComponent implements OnInit {
   // appRef = inject(ApplicationRef);
@@ -32,7 +35,15 @@ export class AppComponent implements OnInit {
   spinner = inject(NgxSpinnerService);
   injector = inject(Injector);
   cvService!: CvService;
+  counterSignal = signal(0);
+  cdr = inject(ChangeDetectorRef);
+  // counter = 0;
   constructor() {
+    // setInterval(() => {
+    //   this.counter+=1;
+    //   // this.cdr.detectChanges();
+    //   this.counterSignal.update((counter) => counter + 1);
+    // },1000)
     // this.router.events.subscribe({
     //   next: (event) => {
     //     if (event instanceof NavigationStart) {

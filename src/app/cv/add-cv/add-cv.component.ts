@@ -52,6 +52,7 @@ export class AddCvComponent implements OnDestroy {
     }
   );
   constructor() {
+    this.age.value
     // 9ayedet 3al flux des changements
     this.age.valueChanges
       .pipe(

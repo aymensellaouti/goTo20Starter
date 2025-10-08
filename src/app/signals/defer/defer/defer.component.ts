@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { HugeComponent } from "../huge/huge.component";
 
 @Component({
@@ -8,5 +8,9 @@ import { HugeComponent } from "../huge/huge.component";
     imports: [HugeComponent]
 })
 export class DeferComponent {
+  show = signal(false);
 
+  showElemen() {
+    return this.show();
+  }
 }

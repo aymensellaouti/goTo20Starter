@@ -1,11 +1,11 @@
-@let products = productsSignal();
-@if (products.length) {
+<!-- @let products = productsSignal(); -->
+@if (!rxProductsRessource.isLoading()) {
   <button (click)="more()" class="btn btn-primary"> More Products</button>
   <div class="alert alert-warning">
-    Product Number: {{products?.length}}
+    Product Number: {{rxProductsRessource.value()?.length}}
   </div>
   <div class="row">
-    @for (product of products; track product) {
+    @for (product of rxProductsRessource.value(); track product) {
       <div class="col-4">
         <img class="rounded-circle" src="{{product.thumbnail}}" width="150px" height="150px">
         {{product.title}}
@@ -16,3 +16,8 @@
   Loading...
 }
 
+@if(rxProductsRessource.error()) {
+  <div class="alert alert-danger">
+    Il y a un problème, merci de contacter l'admin
+  </div>
+}

@@ -12,7 +12,7 @@ import { provideToastr } from 'ngx-toastr';
 import { routes } from './app/routes';
 import {  provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { isDevMode, importProvidersFrom } from '@angular/core';
+import { isDevMode, importProvidersFrom, provideZonelessChangeDetection } from '@angular/core';
 import { AppComponent } from './app/app.component';
 import { provideRouter, withComponentInputBinding, withPreloading } from '@angular/router';
 import { CustomPreloadingStrategy } from './app/Preloading strategies/custom.preloading-strategy';
@@ -54,5 +54,6 @@ bootstrapApplication(AppComponent, {
     provideAnimations(),
     provideToastr(),
     provideHttpClient(withInterceptors([authInterceptor])),
+    provideZonelessChangeDetection()
   ],
 }).catch((err) => console.error(err));

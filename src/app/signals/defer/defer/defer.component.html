@@ -2,9 +2,14 @@
 <p >defer trigger</p>
 <div>cc</div>
 <input type="text" class="form-control">
-
-<app-huge/>
-
+<button (click)="show.set(true)">show</button>
+@defer (on interaction; prefetch when show(); on hover) {
+  <app-huge/>
+} @placeholder (minimum 3s) {
+  <div>
+    Placeholder...
+  </div>
+}
 
 <div>Some code</div>
 

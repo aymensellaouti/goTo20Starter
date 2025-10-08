@@ -13,12 +13,10 @@ import { CounterService } from './services/counter.service';
 @Component({
   selector: 'app-two',
   standalone: true,
-  imports: [FourComponent, FiveComponent],
+  imports: [FourComponent, FiveComponent, AsyncPipe],
   template: `
-    <span
-      class="node-label"
-      [style.background-color]="color"
-      >2
+    <span  (click)="counterService.increaseCounter()" class="node-label" [style.background-color]="color"
+      >2 / {{counterService.counter()}}
     </span>
 
     <app-four class="node" />
@@ -27,9 +25,9 @@ import { CounterService } from './services/counter.service';
   `,
   styles: `
   `,
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class TwoComponent extends BaseNodeComponent {
-
+  counterService = inject(CounterService);
 }
