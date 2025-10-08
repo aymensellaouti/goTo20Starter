@@ -15,12 +15,13 @@ import { CounterComponent } from "./signals/counter/counter.component";
 import { SomComponent } from "./signals/som/som.component";
 import { TtcComponent } from "./signals/ttc/ttc.component";
 import { ShowIsEvenComponent } from "./signals/show-is-even/show-is-even.component";
+import { CountryCurrencySelectorComponent } from "./signals/linkedSignal/currency-selector/country-currency-selector.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [NavbarComponent, RouterOutlet, NgxSpinnerComponent, CounterComponent, SomComponent, TtcComponent, ShowIsEvenComponent],
+  imports: [NavbarComponent, RouterOutlet, NgxSpinnerComponent, CounterComponent, SomComponent, TtcComponent, ShowIsEvenComponent, CountryCurrencySelectorComponent],
 })
 export class AppComponent implements OnInit {
   // appRef = inject(ApplicationRef);
